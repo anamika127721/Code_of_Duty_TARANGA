@@ -1,58 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Resident | Sortify</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sortify Resident</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 </head>
+
 <body>
 
-<header class="header">
-  <h2>Welcome to Sortify 🌱</h2>
-</header>
+    <!-- SLIDER -->
+<div class="slider-section">
+    <div class="swiper netflix-slider">
+        <div class="swiper-wrapper">
+            
+            <div class="swiper-slide video-slide">
+                <video autoplay muted loop playsinline class="slide-video">
+                    <source src="waste-video.mp4" type="video/mp4">
+                </video>
+                <div class="slide-content">
+                    <h2>Our Mission</h2>
+                    <p>Watch how we change the world in 7 seconds.</p>
+                </div>
+            </div>
 
-<!-- Slider -->
-<div class="slider">
-  <img src="img1.jpg" class="active">
-  <img src="img2.jpg">
+            <div class="swiper-slide leaderboard-slide">
+                <div class="leaderboard-container">
+                    <h3>🏆 Top Eco-Warriors</h3>
+                    <div class="leader-row gold">
+                        <span>#1</span> <span>Sarah J.</span> <span>2400 pts</span>
+                    </div>
+                    <div class="leader-row silver">
+                        <span>#2</span> <span>Mike R.</span> <span>2100 pts</span>
+                    </div>
+                    <div class="leader-row bronze">
+                        <span>#3</span> <span>You</span> <span>1250 pts</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide image-slide" style="background-image: url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80');">
+                <div class="slide-overlay">
+                    <h2>Sort It Right!</h2>
+                    <p>Green for organic, Blue for plastic.</p>
+                </div>
+            </div>
+
+ <div class="swiper-slide image-slide" style="background-image: url('images/pollution.jpeg');">
+    <div class="slide-overlay">
+        <h2>Stop Pollution</h2>
+        <p>Save our air, save our future.</p>
+    </div>
 </div>
 
-<!-- Actions -->
-<div class="actions">
-  <div class="action" onclick="openPickup()">🚛<p>Pick Up</p></div>
-  <div class="action" onclick="openCamera()">📸<p>Report</p></div>
-  <div class="action" onclick="openMarket()">🛒<p>Buy & Sell</p></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
 </div>
 
-<!-- Pollution -->
-<div class="pollution-bar">
-  Air Quality: Good 🌿 – Enjoy a clean day!
+    <!-- ACTION ICONS -->
+    <div class="action-container">
+        <div class="icon-wrapper" onclick="window.location.href='pickup.html'">
+            <div class="circle-icon blue">
+                <i class="fa-solid fa-truck"></i>
+            </div>
+            <span>Pick Up</span>
+        </div>
+
+        <div class="icon-wrapper" id="cameraBtn">
+            <div class="circle-icon orange pulse">
+                <i class="fa-solid fa-camera"></i>
+            </div>
+            <span>Report</span>
+        </div>
+
+        <div class="icon-wrapper" onclick="window.location.href='buysell.html'">
+            <div class="circle-icon purple">
+                <i class="fa-solid fa-store"></i>
+            </div>
+            <span>Buy & Sell</span>
+        </div>
+    </div>
+
+    <!-- AQI BAR -->
+<div class="aqi-card">
+    <div class="aqi-icon-box">
+        <span class="emoji-bounce">🌿</span>
+    </div>
+    <div class="aqi-content">
+        <h4>Air Quality: <span class="status-text">Excellent</span> 😊</h4>
+        <p>Perfect weather for a walk outside!</p>
+    </div>
+    <div class="aqi-score-circle">
+        <span>42</span>
+        <small>AQI</small>
+    </div>
 </div>
 
-<!-- Dashboard -->
-<div class="dashboard">
-  <div class="analytics">
-    <canvas id="chart1"></canvas>
-    <canvas id="chart2"></canvas>
-  </div>
+    <!-- STATS -->
+<div class="stats-grid">
+    <div class="stat-card chart-box">
+        <div class="card-header">
+            <h3>Waste Sorted</h3>
+            <i class="fa-solid fa-chart-pie"></i>
+        </div>
+        <div class="chart-container">
+            <canvas id="wasteChart"></canvas>
+        </div>
+    </div>
 
-  <div class="points">
-    <h2>Your Points</h2>
-    <div class="score">120</div>
-    <p>Keep segregating waste 💚</p>
-  </div>
+    <div class="stat-card points-box">
+        <div class="card-header">
+            <h3>My Points</h3>
+            <i class="fa-solid fa-star"></i>
+        </div>
+        <div class="points-content">
+            <span class="points-value">1,250</span>
+            <span class="points-label">Eco-Warrior</span>
+        </div>
+        <i class="fa-solid fa-trophy bg-icon"></i>
+    </div>
 </div>
 
-<!-- Footer -->
-<footer>
-  <div onclick="openComplaint()">📩</div>
-  <div onclick="openMap()">🗺️</div>
-  <div onclick="openVolunteer()">🤝</div>
-  <div onclick="contact()">☎️</div>
-</footer>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-icon">
+            <i class="fa-solid fa-envelope"></i>
+        </div>
 
-<div class="ai-bot">🤖</div>
+        <div class="footer-icon" onclick="window.open('https://maps.google.com')">
+            <i class="fa-solid fa-location-dot"></i>
+        </div>
 
-<script src="script.js"></script>
+        <div class="footer-icon" onclick="openVolunteerPage()">
+            <i class="fa-solid fa-users"></i>
+        </div>
+
+        <div class="footer-icon">
+            <i class="fa-solid fa-headset"></i>
+        </div>
+    </footer>
+
+    <!-- AI BOT -->
+    <div class="ai-bot">
+        <i class="fa-solid fa-robot"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script1.js"></script>
 </body>
 </html>
