@@ -1,0 +1,188 @@
+/* 🌿 Global */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  background: linear-gradient(180deg, #f2fdf7, #f7f9fc);
+  color: #333;
+}
+
+/* 🔝 Slider */
+.slider {
+  width: 92%;
+  height: 220px;
+  margin: 20px auto;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+  transition: opacity 0.6s ease;
+}
+
+.slider img.active {
+  display: block;
+}
+
+/* ⚙️ Action Icons */
+.actions {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 25px 10px;
+}
+
+.action {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(145deg, #ffffff, #e8f5ee);
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 18px;
+  font-size: 26px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+}
+
+.action p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* 🌫️ Pollution Bar */
+.pollution-bar {
+  margin: 20px auto;
+  width: 90%;
+  padding: 14px 18px;
+  background: linear-gradient(90deg, #e6fff3, #f0fff8);
+  border-radius: 15px;
+  font-size: 14px;
+  text-align: center;
+  box-shadow: inset 0 0 8px rgba(0, 150, 100, 0.15);
+}
+
+/* 📊 Dashboard */
+.dashboard {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+}
+
+/* Analytics Cards */
+.analytics {
+  flex: 1.2;
+  background: white;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.analytics canvas {
+  width: 100% !important;
+  height: 160px !important;
+  margin-bottom: 10px;
+}
+
+/* 🌟 Points Card */
+.points {
+  flex: 0.8;
+  background: linear-gradient(145deg, #e9fff3, #ffffff);
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.points h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #2e7d32;
+}
+
+.score {
+  font-size: 42px;
+  margin: 15px 0;
+  font-weight: bold;
+  color: #43a047;
+}
+
+.points p {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* 🔻 Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.12);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+footer div {
+  font-size: 22px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+footer div:hover {
+  transform: scale(1.2);
+}
+
+/* 🤖 AI Assistant */
+.ai-bot {
+  position: fixed;
+  bottom: 90px;
+  right: 18px;
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(135deg, #4caf50, #81c784);
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 62px;
+  font-size: 28px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.ai-bot:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* 📱 Mobile Friendly */
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .action {
+    width: 80px;
+    height: 80px;
+  }
+
+  .slider {
+    height: 190px;
+  }
+}
