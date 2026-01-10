@@ -1,49 +1,51 @@
-/* Slider */
-let slides = document.querySelectorAll('.slider img');
-let index = 0;
-setInterval(() => {
-  slides[index].classList.remove('active');
-  index = (index + 1) % slides.length;
-  slides[index].classList.add('active');
-}, 3000);
+// 🔥 Firebase Config (ADD YOUR KEYS)
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com"
+};
 
-/* Navigation */
-function goToPickup() {
-  alert("Pickup Page (to be implemented)");
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// LOGIN
+function login() {
+  const email = email.value;
+  const password = password.value;
+  const role = localStorage.getItem("role");
+
+  auth.signInWithEmailAndPassword(email, password)
+    .then(() => {
+      if (role === "resident") window.location.href = "resident.html";
+      if (role === "collector") alert("Collector page coming next");
+      if (role === "admin") alert("Admin page coming next");
+    })
+    .catch(err => alert(err.message));
 }
 
-function goToBuySell() {
-  alert("Buy & Sell Page (to be implemented)");
+// Resident actions
+function openPickup() {
+  alert("Pickup Request Page");
+}
+
+function openCamera() {
+  alert("Camera Upload Feature");
+}
+
+function openMarket() {
+  alert("Buy & Sell Page");
+}
+
+function openComplaint() {
+  alert("Complaint Box");
+}
+
+function openVolunteer() {
+  alert("Volunteer Form");
 }
 
 function openMap() {
-  window.open("https://maps.google.com", "_blank");
+  alert("NASA Pollution API");
 }
-
-/* Camera */
-function openCamera() {
-  document.getElementById('cameraInput').click();
-}
-
-/* Charts */
-new Chart(document.getElementById('collectedChart'), {
-  type: 'pie',
-  data: {
-    labels: ['Organic', 'Plastic', 'E-waste'],
-    datasets: [{
-      data: [60, 30, 10],
-      backgroundColor: ['#4CAF50','#FFC107','#F44336']
-    }]
-  }
-});
-
-new Chart(document.getElementById('disposedChart'), {
-  type: 'pie',
-  data: {
-    labels: ['Recycled', 'Composted', 'Landfill'],
-    datasets: [{
-      data: [50, 30, 20],
-      backgroundColor: ['#2196F3','#8BC34A','#9E9E9E']
-    }]
-  }
-});

@@ -2,82 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Sortify – Smart Waste App</title>
+  <title>Sortify</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="center">
 
-  <!-- 🌟 App Branding -->
-  <div class="branding">
-    <h1 class="app-name">SORTIFY</h1>
-    <p class="tagline">Sort Smart. Live Clean.</p>
-  </div>
+  <div class="landing-card">
+    <h1>Sortify</h1>
+    <p class="tagline">Segregate Smart. Live Clean.</p>
 
-  <!-- 🎬 Slider -->
-  <div class="slider">
-    <img src="images/slide1.jpg" class="active">
-    <img src="images/slide2.jpg">
-    <img src="images/slide3.jpg">
-  </div>
-
-  <!-- 🎯 Actions -->
-  <h2 class="section-title">What do you want to do today?</h2>
-
-  <div class="actions">
-    <div class="action">
-      🚛
-      <p>Request<br>Pickup</p>
-    </div>
-
-    <div class="action" onclick="openCamera()">
-      📸
-      <p>Report<br>Waste</p>
-    </div>
-
-    <div class="action">
-      ♻️
-      <p>Buy &<br>Sell</p>
+    <div class="role-buttons">
+      <button onclick="goLogin('resident')">Resident</button>
+      <button onclick="goLogin('collector')">Collector</button>
+      <button onclick="goLogin('admin')">Admin</button>
     </div>
   </div>
 
-  <!-- 🌫️ Pollution -->
-  <div class="pollution-bar">
-    🌫️ <b>Air Quality:</b> Moderate  
-    <br>
-    😊 Let’s keep our area clean today!
-  </div>
-
-  <!-- 📊 Dashboard -->
-  <h2 class="section-title">Your Impact 🌍</h2>
-
-  <div class="dashboard">
-    <div class="analytics">
-      <h3>Waste Summary</h3>
-      <canvas id="collectedChart"></canvas>
-      <canvas id="disposedChart"></canvas>
-    </div>
-
-    <div class="points">
-      <h2>🌟 Green Points</h2>
-      <div class="score">420</div>
-      <p>You are a Sortify Hero!</p>
-    </div>
-  </div>
-
-  <!-- 🔻 Footer -->
-  <footer>
-    <div title="Notifications">✉️</div>
-    <div title="Map">🗺️</div>
-    <div title="Volunteer">🤝</div>
-    <div title="Contact">📞</div>
-  </footer>
-
-  <!-- 🤖 AI Buddy -->
-  <div class="ai-bot">🤖</div>
-
-  <input type="file" id="cameraInput" accept="image/*" capture hidden>
-
-  <script src="script.js"></script>
+  <script>
+    function goLogin(role) {
+      localStorage.setItem("role", role);
+      window.location.href = "login.html";
+    }
+  </script>
 </body>
 </html>

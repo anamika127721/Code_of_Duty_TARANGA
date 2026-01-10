@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resident | Sortify</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="header">
+  <h2>Welcome to Sortify 🌱</h2>
+</header>
+
+<!-- Slider -->
+<div class="slider">
+  <img src="img1.jpg" class="active">
+  <img src="img2.jpg">
+</div>
+
+<!-- Actions -->
+<div class="actions">
+  <div class="action" onclick="openPickup()">🚛<p>Pick Up</p></div>
+  <div class="action" onclick="openCamera()">📸<p>Report</p></div>
+  <div class="action" onclick="openMarket()">🛒<p>Buy & Sell</p></div>
+</div>
+
+<!-- Pollution -->
+<div class="pollution-bar">
+  Air Quality: Good 🌿 – Enjoy a clean day!
+</div>
+
+<!-- Dashboard -->
+<div class="dashboard">
+  <div class="analytics">
+    <canvas id="chart1"></canvas>
+    <canvas id="chart2"></canvas>
+  </div>
+
+  <div class="points">
+    <h2>Your Points</h2>
+    <div class="score">120</div>
+    <p>Keep segregating waste 💚</p>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div onclick="openComplaint()">📩</div>
+  <div onclick="openMap()">🗺️</div>
+  <div onclick="openVolunteer()">🤝</div>
+  <div onclick="contact()">☎️</div>
+</footer>
+
+<div class="ai-bot">🤖</div>
+
+<script src="script.js"></script>
+</body>
+</html>
