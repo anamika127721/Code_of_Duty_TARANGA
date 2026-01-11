@@ -15,17 +15,17 @@
   - Member 3 – Amina Sali 
   - Member 4 – Abhimanue Anil
 
-- **Problem Domain:**  
+- **Problem Domain:**  Smart Waste Management & Environmental Sustainability
 - **Selected Problem Statement:**  
 Improper waste segregation and inefficient waste collection processes contribute to environmental pollution and health hazards. Lack of accountability, awareness, and tracking in waste handling results in poor segregation at source and ineffective collection practices
 ---
 
 ## 🧩 Problem Description
 
-The modern waste management crisis is driven by a critical breakdown in the lifecycle of refuse, characterized by improper source segregation and a profound lack of operational accountability. Currently, the mixing of organic, recyclable, and hazardous materials at the point of generation creates "contaminated waste streams," rendering circular economy efforts virtually impossible and forcing vast amounts of recoverable resources into landfills. This inefficiency is compounded by a "visibility gap," where municipalities rely on static, outdated collection routes without real-time data on bin capacity or truck locations. As of 2026, this lack of tracking has led to severe environmental and health consequences: unsegregated waste in landfills becomes a primary source of methane ($CH_4$)—a potent greenhouse gas—while toxic leachate from unmonitored dump sites poisons local groundwater. This problem is more relevant than ever as rapid urbanization outpaces traditional infrastructure, making it necessary to transition from a "logistics-only" approach to a data-driven, smart management system. By integrating digital tracking, AI-assisted segregation, and community-driven accountability, we can transform waste from a hazardous liability into a manageable, transparent resource, directly contributing to global Net Zero targets and public health safety.
-
----
-
+Rapid urbanization and increasing population density have led to a significant rise in solid waste generation in residential and urban areas. Existing waste management systems are largely manual, unorganized, and lack transparency, resulting in improper waste segregation, delayed or missed waste collection, illegal dumping, and increased environmental pollution. Residents often have no effective platform to track waste pickup, report issues, or provide feedback on collection services, while authorities struggle with limited real-time data and accountability.
+Waste collectors face challenges such as unverified pickup records, inefficient route management, and lack of performance monitoring. Additionally, the absence of a structured feedback and rating mechanism makes it difficult to assess service quality or identify areas requiring improvement. Poor segregation practices further reduce recycling efficiency, increase landfill usage, and contribute to air, soil, and water pollution.
+Traditional systems also fail to integrate modern technologies such as QR-based verification, data analytics, and user-friendly digital interfaces, which are essential for building sustainable and scalable smart city solutions. As a result, waste management remains inefficient, non-transparent, and environmentally harmful.
+There is a critical need for a technology-driven, smart, and user-centric waste management platform that enables efficient waste collection, ensures accountability of collectors, promotes proper segregation, allows real-time monitoring, and encourages community participation through feedback, rewards, and awareness. Addressing these challenges is essential for improving public health, environmental sustainability, and the overall quality of urban living.
 ## 💡 Proposed Solution
 
 Sortify
@@ -71,19 +71,99 @@ Example:
 
 Explain how your project works:
 - Overall workflow
+  Sortify is a role-based smart waste management system that connects Residents, Collectors, and Admins on a single digital platform.
+Users start from a common landing page and log in using their role.
+Based on authentication, they are redirected to their respective dashboards.
+Residents generate pickup requests, report waste, and interact with the reuse marketplace.
+Collectors receive real-time pickup details, verify collection using QR scanning, and submit service feedback.
+Admins monitor operations, analyze data, manage users, and optimize waste collection and segregation processes.
+This workflow ensures transparency, accountability, and efficient waste handling.
 - Key features implemented
+ * Role-Based Dashboards for Residents, Collectors, and Admins
+*Waste Pickup Requests with waste type selection
+*QR Code Verification to confirm waste collection
+*Collector Rating System using basket-based feedback
+*Waste Reporting via image uploads
+*Buy & Sell Marketplace for reusable and recyclable items
+*Complaint & Volunteering Modules for community engagement
+*Analytics Dashboard with charts and segregation statistics
+*Pollution Monitoring using NASA’s Open API
+*Mobile-Responsive UI with modern card-based design
 - Any challenges faced and how you solved them
-
+Challenge: Managing different user roles efficiently
+Solution: Implemented role-based access and dashboard redirection.
+Challenge: Ensuring pickup authenticity and accountability
+Solution: Introduced QR code scanning and post-collection ratings.
+Challenge: Presenting complex waste data clearly
+Solution: Used interactive charts and visual dashboards for easy understanding.
+Challenge: User engagement and adoption
+Solution: Designed a clean, intuitive UI with icons, cards, and gamified elements.
 ---
 
 ## 📂 Project Structure
+Sortify/
+│
+├── public/
+│   ├── index.html                # Landing page (Resident / Collector / Admin selection)
+│   ├── login.html                # Common login page
+│
+│   ├── resident/
+│   │   ├── resident.html         # Resident dashboard
+│   │   ├── pickup.html           # Waste pickup request page
+│   │   ├── buysell.html          # Buy & Sell marketplace
+│   │   ├── volunteer.html        # Volunteering form
+│   │   └── complaint.html        # Complaints submission page
+│
+│   ├── collector/
+│   │   └── collector.html        # Collector dashboard
+│
+│   ├── admin/
+│   │   └── admin.html            # Admin dashboard
+│
+│   └── assets/
+│       ├── images/               # Logos, icons, product images
+│       ├── videos/               # Landing page videos
+│       └── qr/                   # Generated QR codes
+│
+├── css/
+│   ├── global.css                # Common styles
+│   ├── login.css                 # Login page styles
+│   ├── resident.css              # Resident UI styles
+│   ├── collector.css             # Collector UI styles
+│   └── admin.css                 # Admin UI styles
+│
+├── js/
+│   ├── firebase-config.js        # Firebase initialization
+│   ├── auth.js                   # Authentication & role routing
+│
+│   ├── resident/
+│   │   ├── resident.js           # Resident dashboard logic
+│   │   ├── pickup.js             # Pickup request logic
+│   │   ├── buysell.js            # Buy & Sell logic
+│   │   ├── volunteer.js          # Volunteering submissions
+│   │   └── complaint.js          # Complaint handling
+│
+│   ├── collector/
+│   │   └── collector.js          # Collector dashboard logic
+│
+│   └── admin/
+│       ├── admin.js              # Admin dashboard logic
+│       ├── analytics.js          # Charts & insights
+│       └── fleet.js              # Fleet & route management
+│
+├── data/
+│   └── sample-data.json          # Dummy/local data for testing
+│
+├── README.md                     # Project overview & setup guide
+├── package.json                  # Dependencies (if extended)
+└── .env                          # API keys (NASA, Firebase)
 
 
 ---
 
 ## 🧪 Screenshots / Demo
 
-Add screenshots of your website or application inside the `screenshots/` folder.
+
 
 Mention them here:
 - Screenshot 1 – Description  
