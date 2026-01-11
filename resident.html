@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sortify Resident</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+</head>
+
+<body>
+
+    <!-- SLIDER -->
+<div class="slider-section">
+    <div class="swiper netflix-slider">
+        <div class="swiper-wrapper">
+            
+            <div class="swiper-slide video-slide">
+                <video autoplay muted loop playsinline class="slide-video">
+                    <source src="waste-video.mp4" type="video/mp4">
+                </video>
+                <div class="slide-content">
+                    <h2>Our Mission</h2>
+                    <p>Watch how we change the world in 7 seconds.</p>
+                </div>
+            </div>
+
+            <div class="swiper-slide leaderboard-slide">
+                <div class="leaderboard-container">
+                    <h3>🏆 Top Eco-Warriors</h3>
+                    <div class="leader-row gold">
+                        <span>#1</span> <span>Sarah J.</span> <span>2400 pts</span>
+                    </div>
+                    <div class="leader-row silver">
+                        <span>#2</span> <span>Mike R.</span> <span>2100 pts</span>
+                    </div>
+                    <div class="leader-row bronze">
+                        <span>#3</span> <span>You</span> <span>1250 pts</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide image-slide" style="background-image: url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80');">
+                <div class="slide-overlay">
+                    <h2>Sort It Right!</h2>
+                    <p>Green for organic, Blue for plastic.</p>
+                </div>
+            </div>
+
+ <div class="swiper-slide image-slide" style="background-image: url('images/pollutions.jpeg');">
+    <div class="slide-overlay">
+        <h2>Stop Pollution</h2>
+        <p>Save our air, save our future.</p>
+    </div>
+</div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+    <!-- ACTION ICONS -->
+   <div class="action-container">
+    <div class="icon-wrapper" onclick="window.location.href='pickup.html'">
+        <div class="circle-icon blue">
+            <i class="fa-solid fa-truck"></i>
+        </div>
+        <span>Pick Up</span>
+    </div>
+
+    <div class="icon-wrapper" id="cameraBtn">
+        <input type="file" id="wasteInput" accept="image/*" capture="environment" style="display: none;">
+        
+        <div class="circle-icon orange pulse">
+            <i class="fa-solid fa-camera"></i>
+        </div>
+        <span>Report</span>
+    </div>
+
+    <div class="icon-wrapper" onclick="window.location.href='buysell.html'">
+        <div class="circle-icon purple">
+            <i class="fa-solid fa-store"></i>
+        </div>
+        <span>Buy & Sell</span>
+    </div>
+</div>
+
+    <!-- AQI BAR -->
+<div class="aqi-card">
+    <div class="aqi-icon-box">
+        <span class="emoji-bounce">🌿</span>
+    </div>
+    <div class="aqi-content">
+        <h4>Air Quality: <span class="status-text">Excellent</span> 😊</h4>
+        <p>Perfect weather for a walk outside!</p>
+    </div>
+    <div class="aqi-score-circle">
+        <span>42</span>
+        <small>AQI</small>
+    </div>
+</div>
+
+    <!-- STATS -->
+<div class="stats-grid">
+    <div class="stat-card chart-box">
+        <div class="card-header">
+            <h3>Waste Sorted</h3>
+            <i class="fa-solid fa-chart-pie"></i>
+        </div>
+        <div class="chart-container">
+            <canvas id="wasteChart"></canvas>
+        </div>
+    </div>
+
+    <div class="stat-card points-box">
+        <div class="card-header">
+            <h3>My Points</h3>
+            <i class="fa-solid fa-star"></i>
+        </div>
+        <div class="points-content">
+            <span class="points-value">1,250</span>
+            <span class="points-label">Eco-Warrior</span>
+        </div>
+        <i class="fa-solid fa-trophy bg-icon"></i>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="flex justify-around items-center py-3">
+
+    <!-- Map / Location -->
+    <div class="footer-icon flex flex-col items-center text-sm cursor-pointer"
+         onclick="window.open('https://maps.google.com')">
+        <span class="text-xl">📍</span>
+        <span class="text-[11px] font-medium mt-1">Map</span>
+    </div>
+
+    <!-- Volunteer / Community -->
+    <div class="footer-icon flex flex-col items-center text-sm cursor-pointer"
+         onclick="openVolunteerPage()">
+        <span class="text-xl">🤝</span>
+        <span class="text-[11px] font-medium mt-1">Volunteer</span>
+    </div>
+
+</footer>
+
+    <!-- AI BOT -->
+    <div class="ai-bot">
+        <i class="fa-solid fa-robot"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script1.js"></script>
+</body>
+</html>

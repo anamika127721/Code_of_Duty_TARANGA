@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SORTIFY</title>
+
+<!-- FUN FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------------- GLOBAL ---------------- */
+* {
+    box-sizing: border-box;
+    font-family: 'Fredoka', sans-serif; /* 🎉 Funny font applied */
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ---------------- SCRAP ANIMATION ---------------- */
+.scrap {
+    position: absolute;
+    font-size: 46px;
+    opacity: 0.95;
+    pointer-events: none;
+    animation: convergeAndFall 4s ease-in-out forwards;
+}
+
+@keyframes convergeAndFall {
+    0% {
+        transform: translate(var(--start-x), var(--start-y)) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(0, 0) rotate(180deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--fall-x), 120vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ---------------- CARD ---------------- */
+.card {
+    background: white;
+    width: 340px;
+    padding: 30px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    z-index: 2;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------- HOME ---------------- */
+.app-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #2e7d32;
+    letter-spacing: 1px;
+}
+
+.tagline {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.role-btn {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    background: #2e7d32;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.role-btn:hover {
+    background: #1b5e20;
+    transform: scale(1.03);
+}
+
+/* ---------------- LOGIN ---------------- */
+.hidden {
+    display: none;
+}
+
+h2 {
+    color: #2e7d32;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 11px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: #2e7d32;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background: #1b5e20;
+}
+
+.back {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #2e7d32;
+    cursor: pointer;
+}
+
+.msg {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* ---------------- MASCOT ---------------- */
+.mascot {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    z-index: 1;
+    animation: float 3s ease-in-out infinite;
+    opacity: 0.95;
+}
+
+@keyframes float {
+    0% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+    100% { transform: translateX(-50%) translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🐼 MASCOT IMAGE -->
+<img src="images/mascot.jpeg" class="mascot">
+<!-- 🔁 Replace mascot.png with your actual mascot image file -->
+
+<!-- ---------------- HOME PAGE ---------------- -->
+<div class="card" id="homePage">
+    <div class="app-title">SORTIFY</div>
+    <div class="tagline">Got a waste? Sortify it and earn from it ♻️</div>
+
+    <button class="role-btn" onclick="selectRole('resident')">Resident</button>
+    <button class="role-btn" onclick="selectRole('collector')">Collector</button>
+    <button class="role-btn" onclick="selectRole('admin')">Admin</button>
+</div>
+
+<!-- ---------------- LOGIN PAGE ---------------- -->
+<div class="card hidden" id="loginPage">
+    <h2 id="loginTitle">Login</h2>
+
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+
+    <button class="login-btn" onclick="login()">Login</button>
+
+    <div class="msg" id="loginMsg"></div>
+    <div class="back" onclick="goBack()">← Back</div>
+</div>
+
+<script>
+/* ---------------- SCRAP ANIMATION SCRIPT ---------------- */
+const scraps = ["🧴", "🥫", "📦", "🍌", "📰", "🍾", "🔋","🧴", "🥫", "📦", "🍌", "📰", "🍾", "🔋"];
+const centerX = window.innerWidth / 2;
+const centerY = window.innerHeight / 2;
+
+function createScrap() {
+    const scrap = document.createElement("div");
+    scrap.className = "scrap";
+    scrap.innerText = scraps[Math.floor(Math.random() * scraps.length)];
+
+    const side = Math.floor(Math.random() * 4);
+    let startX, startY;
+
+    if (side === 0) {
+        startX = Math.random() * window.innerWidth - centerX;
+        startY = -centerY - 100;
+    } else if (side === 1) {
+        startX = centerX + 100;
+        startY = Math.random() * window.innerHeight - centerY;
+    } else if (side === 2) {
+        startX = Math.random() * window.innerWidth - centerX;
+        startY = centerY + 100;
+    } else {
+        startX = -centerX - 100;
+        startY = Math.random() * window.innerHeight - centerY;
+    }
+
+    const fallDrift = (Math.random() - 0.5) * 300;
+
+    scrap.style.setProperty("--start-x", startX + "px");
+    scrap.style.setProperty("--start-y", startY + "px");
+    scrap.style.setProperty("--fall-x", fallDrift + "px");
+
+    document.body.appendChild(scrap);
+    setTimeout(() => scrap.remove(), 4000);
+}
+
+let interval = setInterval(createScrap, 180);
+setTimeout(() => clearInterval(interval), 4000);
+
+/* ---------------- LOGIN FLOW ---------------- */
+let selectedRole = "";
+
+function selectRole(role) {
+    selectedRole = role;
+    homePage.classList.add("hidden");
+    loginPage.classList.remove("hidden");
+    loginTitle.innerText = role.charAt(0).toUpperCase() + role.slice(1) + " Login";
+}
+
+function login() {
+    if (!username.value || !password.value) {
+        loginMsg.style.color = "red";
+        loginMsg.innerText = "Please enter username and password";
+        return;
+    }
+
+    loginMsg.style.color = "green";
+    loginMsg.innerText = "Login successful 🎉";
+
+    setTimeout(() => {
+        location.href = selectedRole + ".html";
+    }, 800);
+}
+
+function goBack() {
+    loginPage.classList.add("hidden");
+    homePage.classList.remove("hidden");
+    loginMsg.innerText = "";
+}
+</script>
+
+</body>
+</html>

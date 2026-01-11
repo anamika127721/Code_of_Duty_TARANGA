@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sortify | Pickup Queue</title>
+  <link rel="stylesheet" href="style-coll.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo">🌿 Sortify</div>
+  <div class="collector-info">
+    <span class="name">Collector Joe</span>
+    <span class="status">On Route 5</span>
+  </div>
+</header>
+
+<main class="container">
+
+  <h1>Pickup Queue</h1>
+  <p class="subtitle">Here are your assigned pickup requests for today.</p>
+
+  <div id="pickupList">
+
+    <!-- CARD 1 -->
+    <div class="card pickup-card">
+      <div class="left">
+        <h2>Request ID: PKP-001</h2>
+        <span class="time">2024-08-15 at 10:00 AM</span>
+
+      <div class="detail">👤 Anamika K</div>
+      <div class="detail">📞 +91 9446282520</div>
+      <div class="detail">📍 Palakkad,Kerala,PIN : 678001</div>
+
+        <div class="tags">
+          <span class="tag">E-waste</span>
+          <span class="tag">Plastic</span>
+          <span class="tag">Medical Waste</span>
+        </div>
+      </div>
+
+      <div class="right">
+        <span class="badge pending">Pending</span>
+        <div class="actions">
+          <button class="btn outline mapBtn">📍 Open in Maps</button>
+          <button class="btn primary scanBtn">📷 Scan & Collect</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card pickup-card">
+      <div class="left">
+        <h2>Request ID: PKP-002</h2>
+        <span class="time">2024-08-15 at 11:30 AM</span>
+
+      <div class="detail">👤 Amina Sali</div>
+      <div class="detail">📞 +91 6282986446</div>
+      <div class="detail">📍 Cherthala,Alappuzha,Kerala,Pin : 688852</div>
+
+        <div class="tags">
+          <span class="tag">Food Waste</span>
+          <span class="tag">Plastic</span>
+        </div>
+      </div>
+
+      <div class="right">
+        <span class="badge pending">Pending</span>
+        <div class="actions">
+          <button class="btn outline mapBtn">📍 Open in Maps</button>
+          <button class="btn primary scanBtn">📷 Scan & Collect</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NO PENDING MESSAGE -->
+  <div id="noPickups" class="no-pickups">
+    <h2>✔ All Caught Up</h2>
+    <p>No pending pickups for today.</p>
+  </div>
+
+</main>
+
+<!-- CAMERA MODAL -->
+<div class="modal" id="cameraModal">
+  <div class="modal-content">
+    <h3>Scan QR Code</h3>
+    <video id="video" autoplay></video>
+    <button class="btn primary" id="simulateScan">Simulate Scan</button>
+    <button class="btn outline" id="closeCamera">Close</button>
+  </div>
+</div>
+
+<!-- REVIEW MODAL -->
+<div class="modal" id="reviewModal">
+  <div class="modal-content">
+    <h3>Waste Sorting Review</h3>
+    <p>Rate the resident’s waste segregation:</p>
+
+    <div class="bins">
+      <div class="bin" data-score="1">🗑️</div>
+      <div class="bin" data-score="2">🗑️</div>
+      <div class="bin" data-score="3">🗑️</div>
+      <div class="bin" data-score="4">🗑️</div>
+      <div class="bin" data-score="5">🗑️</div>
+    </div>
+
+    <button class="btn primary" id="submitReview">Submit Review</button>
+  </div>
+</div>
+
+<script src="script-coll.js"></script>
+</body>
+</html>

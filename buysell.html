@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sortify Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; }
+        
+        .glass-header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+        }
+
+        .product-card { transition: transform 0.2s; }
+        .product-card:active { transform: scale(0.98); }
+
+        /* Delete Button Style */
+        .delete-btn {
+            background: rgba(0, 0, 0, 0.3); /* Transparent Black */
+            backdrop-filter: blur(4px);
+            color: white;
+            transition: all 0.2s;
+        }
+        .delete-btn:hover {
+            background: rgba(220, 38, 38, 0.9); /* Turns Red on Hover */
+        }
+
+        .modal-enter { animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+    </style>
+</head>
+<body class="pb-24">
+
+    <nav class="glass-header sticky top-0 z-40 px-5 py-4 flex justify-between items-center shadow-sm">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center text-green-600">
+                <i class="fa-solid fa-leaf text-lg"></i>
+            </div>
+            <div>
+                <h1 class="text-xl font-extrabold text-gray-800 tracking-tight leading-none">Sortify</h1>
+                <p class="text-[10px] font-bold text-green-600 uppercase tracking-wider">Eco Market</p>
+            </div>
+        </div>
+
+        <button onclick="location.href='sell-details.html'" class="bg-gradient-to-r from-orange-500 to-orange-600 text-white pl-3 pr-4 py-2 rounded-full text-xs font-bold shadow-lg shadow-orange-200 active:scale-95 transition flex items-center gap-2">
+            <i class="fa-solid fa-plus text-xs"></i> Sell Item
+        </button>
+    </nav>
+
+    <div class="grid grid-cols-2 gap-4 p-5" id="productGrid">
+        </div>
+
+    <div id="paymentModal" class="hidden fixed inset-0 z-50 flex items-end sm:items-center justify-center">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        <div class="bg-white w-full max-w-sm mx-4 mb-4 sm:mb-0 rounded-3xl p-6 shadow-2xl relative z-10 modal-enter">
+            
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-900">Checkout</h2>
+                    <p class="text-xs text-gray-500">Secure payment via GPay</p>
+                </div>
+                <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form onsubmit="event.preventDefault(); processPayment();" class="space-y-4">
+                <div class="space-y-1">
+                    <label class="text-[11px] font-bold text-gray-400 uppercase tracking-wider ml-1">Full Name</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-4 top-3.5 text-gray-400 text-sm"></i>
+                        <input type="text" id="buyerName" required placeholder="John Doe" class="w-full bg-gray-50 border border-gray-200 rounded-xl py-3 pl-10 pr-4 text-sm font-semibold outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition">
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[11px] font-bold text-gray-400 uppercase tracking-wider ml-1">Delivery Address</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-location-dot absolute left-4 top-3.5 text-gray-400 text-sm"></i>
+                        <textarea id="buyerAddress" required rows="2" placeholder="House No, Street Area..." class="w-full bg-gray-50 border border-gray-200 rounded-xl py-3 pl-10 pr-4 text-sm font-semibold outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition resize-none"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full mt-2 bg-black text-white font-bold py-4 rounded-xl shadow-lg active:scale-95 transition flex justify-between items-center px-6">
+                    <span>Pay Now</span>
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let targetLink = "";
+
+        // 1. Load Products
+        window.onload = function() {
+            renderProducts();
+        };
+
+        function renderProducts() {
+            const productList = JSON.parse(localStorage.getItem('ecoProducts')) || [];
+            const grid = document.getElementById('productGrid');
+
+            if (productList.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-2 flex flex-col items-center justify-center text-center py-12">
+                        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-gray-300 text-2xl mb-4">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <h3 class="text-gray-900 font-bold">Market is Empty</h3>
+                        <p class="text-gray-400 text-xs mt-1">Start listing items to sell!</p>
+                        <button onclick="location.href='sell-details.html'" class="mt-4 text-green-600 font-bold text-sm hover:underline">Start Selling</button>
+                    </div>`;
+                return;
+            }
+
+            grid.innerHTML = productList.map(p => `
+                <div class="product-card bg-white rounded-2xl p-2 pb-3 border border-gray-100 shadow-sm relative overflow-hidden group">
+                    
+                    <div class="h-36 w-full rounded-xl overflow-hidden mb-3 relative bg-gray-50">
+                        <img src="${p.image}" class="w-full h-full object-cover">
+                        
+                        <button onclick="deleteProduct(${p.id})" class="delete-btn absolute top-2 right-2 w-7 h-7 rounded-full flex items-center justify-center z-20">
+                            <i class="fa-solid fa-xmark text-xs"></i>
+                        </button>
+
+                        <div class="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-[10px] font-bold text-gray-600 shadow-sm">
+                            Used
+                        </div>
+                    </div>
+                    
+                    <div class="px-1">
+                        <h3 class="font-bold text-gray-800 text-sm truncate leading-tight">${p.name}</h3>
+                        <p class="text-[11px] text-gray-400 mt-1 mb-3 line-clamp-2 leading-relaxed h-8">${p.desc}</p>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase">Price</p>
+                                <span class="text-green-600 font-extrabold text-lg">₹${p.rate}</span>
+                            </div>
+                            <button onclick="openModal('${p.gpay}')" class="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center shadow-md active:scale-90 transition">
+                                <i class="fa-solid fa-bag-shopping text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 2. Delete Logic
+        function deleteProduct(id) {
+            if(confirm("Are you sure you want to remove this item?")) {
+                let products = JSON.parse(localStorage.getItem('ecoProducts')) || [];
+                // Filter out the product with the matching ID
+                products = products.filter(p => p.id !== id);
+                // Save updated list back to storage
+                localStorage.setItem('ecoProducts', JSON.stringify(products));
+                // Refresh grid
+                renderProducts();
+            }
+        }
+
+        // 3. Modal Logic
+        function openModal(link) {
+            targetLink = link || "https://pay.google.com/";
+            document.getElementById('paymentModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('paymentModal').classList.add('hidden');
+        }
+
+        function processPayment() {
+            const name = document.getElementById('buyerName').value;
+            const address = document.getElementById('buyerAddress').value;
+            if(name && address){
+                window.location.href = targetLink;
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
