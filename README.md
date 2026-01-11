@@ -169,8 +169,8 @@ Mention them here:
 - Screenshot 1 – Sortify empowers residents to recycle, reuse, and manage waste responsibly through a smart, eco-friendly digital platform.  
 - Screenshot 2 – This screen displays the Top Eco-Warriors leaderboard, ranking users based on eco-friendly actions and waste segregation points to encourage healthy competition.
 - Screenshot 3-  This page allows users to register as volunteers with Sortify by submitting personal details and their motivation to support waste management initiatives.
--Screenshot 4-This is the Sortify landing page, allowing users to select their role—Resident, Collector, or Admin—to access personalized dashboards for smart waste management.
--Screenshot 5-This image shows the Sortify Admin Dashboard, providing real-time insights on waste collection status, active fleet, critical alerts, air quality index, and segregation performance through visual cards and charts.
+--Screenshot 4-This is the Sortify landing page, allowing users to select their role—Resident, Collector, or Admin—to access personalized dashboards for smart waste management
+  Screenshot 5-This image shows the Sortify Admin Dashboard, providing real-time insights on waste collection status, active fleet, critical alerts, air quality index, and segregation performance through visual cards and charts.
 -Screenshot 6-This screen shows the Sortify Collector Dashboard, where collectors view assigned pickup requests with resident details, scan QR codes to confirm waste collection, and update pickup status in real time.
  
 
